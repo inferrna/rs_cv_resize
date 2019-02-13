@@ -7,7 +7,7 @@ use image::DynamicImage;
 const SZ: i32 = 100;
 
 fn main() {
-    let img: DynamicImage = image::open("/tmp/linked.png").unwrap();
+    let img: DynamicImage = image::open("/tmp/sample.png").unwrap();
     let imgrgb = img.to_rgb();
     let (cols, rows) = imgrgb.dimensions();
     println!("Unsafe create CvMat");
@@ -21,7 +21,7 @@ fn main() {
     println!("Unsafe create empty buf");
     let cvdest = unsafe {cvCreateMat(SZ, SZ, CV_8SC3) as *mut c_void};
     println!("Unsafe cvResize. CV_INTER_LINEAR = {}", CV_INTER_LINEAR);
-    //Failsi below on assertion 'func != 0'
+    //Fails below on assertion 'func != 0'
     //According to https://github.com/opencv/opencv/blob/3.2.0/modules/imgproc/src/imgwarp.cpp#L3370 this mustn't happen
     unsafe {cvResize(cvmat, cvdest, CV_INTER_LINEAR as i32)};
     println!("Hello, world!");
