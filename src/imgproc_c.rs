@@ -10220,6 +10220,14 @@ extern "C" {
         attributes: CvAttrList,
     );
 }
+#[link(name = "opencv_imgcodecs")]
+extern "C" {
+    pub fn cvSaveImage(
+        filename: *const ::std::os::raw::c_char,
+        image: *const CvArr,
+        params: *const ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
 extern "C" {
     pub fn cvLoad(
         filename: *const ::std::os::raw::c_char,
