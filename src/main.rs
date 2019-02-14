@@ -3,7 +3,6 @@ mod imgproc_c;
 
 use imgproc_c::*;
 use std::ffi::c_void;
-use std::os::raw::c_char;
 use std::ffi::CString;
 
 use image::DynamicImage;
@@ -21,11 +20,8 @@ fn main() {
     let cvsize = CvSize{width: width as i32, height: height as i32};
     let cvimg = unsafe {cvCreateImageHeader(cvsize, IPL_DEPTH_8U as i32, 3)};
     println!("Unsafe cast pixels to c_void");
-    /*let mut buf = img.raw_pixels().into_boxed_slice();
-    let data = buf.as_mut_ptr();*/
     let mut buf = imgrgb.into_vec().into_boxed_slice();
     let data = buf.as_mut_ptr();
-    let cvbytes: &mut c_void = unsafe {&mut std::mem::transmute::<u8, c_void>(*data)};
     let bytes_len = buf.len() as i32;
     println!("{} bytes", bytes_len);
     println!("Unsafe cvSetData");
