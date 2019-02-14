@@ -1,5 +1,5 @@
 ### rs_cv_resize
-Rust OpenCV FFI usage example
+Rust FFI + OpenCV usage example
 
 As for now it's just working. 
 1. Create /tmp/sample.png before check it up.
